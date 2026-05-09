@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Felicitaciones!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-6">
+
+    <audio id="audio-cuac" src="quack_5_sa1UG1N.mp3" preload="auto"></audio>
+
+    <div class="max-w-md w-full text-center space-y-6 animate-in fade-in zoom-in duration-700">
+        
+        <header class="space-y-2">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
+                Felicitaciones
+            </h1>
+            <p class="text-lg text-gray-600">
+                Escaneaste correctamente un código QR.
+            </p>
+        </header>
+
+        <main class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 transition-all hover:shadow-2xl">
+            <p class="text-xl font-medium text-gray-800 mb-6">
+                Tu recompensa es este pato.
+            </p>
+            
+            <div class="flex justify-center mb-8">
+                <img 
+                    src="https://i.makeagif.com/media/8-08-2022/HtSoCU.gif" 
+                    alt="Pato bailando" 
+                    class="rounded-2xl w-full max-w-[250px] shadow-lg"
+                >
+            </div>
+
+            <button 
+                onclick="reproducirCuac()"
+                class="w-full bg-gray-900 text-white px-8 py-4 rounded-full font-bold hover:bg-gray-800 transition-all active:scale-95 shadow-lg flex items-center justify-center gap-2"
+            >
+                <span>Hacer QUACK</span>
+                <!-- Pato SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                    <!-- Cuerpo -->
+                    <ellipse cx="32" cy="40" rx="18" ry="13" fill="#FFD700"/>
+                    <!-- Ala -->
+                    <ellipse cx="26" cy="42" rx="9" ry="6" fill="#FFC200" transform="rotate(-10 26 42)"/>
+                    <!-- Cabeza -->
+                    <circle cx="46" cy="26" r="10" fill="#FFD700"/>
+                    <!-- Pico -->
+                    <path d="M55 26 L63 23 L63 29 Z" fill="#FF8C00"/>
+                    <!-- Ojo -->
+                    <circle cx="49" cy="23" r="2" fill="#1a1a1a"/>
+                    <circle cx="49.7" cy="22.3" r="0.7" fill="white"/>
+                    <!-- Cola -->
+                    <path d="M14 38 Q8 32 10 44 Z" fill="#FFD700"/>
+                    <!-- Patas -->
+                    <line x1="28" y1="52" x2="25" y2="59" stroke="#FF8C00" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="36" y1="52" x2="33" y2="59" stroke="#FF8C00" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M21 59 L25 59 L27 56" stroke="#FF8C00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <path d="M29 59 L33 59 L35 56" stroke="#FF8C00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <!-- Cuello -->
+                    <path d="M37 34 Q40 28 42 30" stroke="#FFD700" stroke-width="5" stroke-linecap="round" fill="none"/>
+                </svg>
+            </button>
+        </main>
+
+        <div class="bg-white/50 border border-gray-200 p-6 rounded-3xl shadow-sm space-y-4">
+            <div>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold mb-2">¿Sabías qué?</p>
+                <p id="dato-qr" class="text-gray-600 text-sm leading-relaxed italic min-h-[60px] flex items-center justify-center">
+                    Cargando sabiduría de código QR...
+                </p>
+            </div>
+
+            <button 
+                onclick="cambiarDato()"
+                class="w-full bg-white border border-gray-200 text-gray-500 py-2 rounded-xl text-xs font-semibold hover:bg-gray-100 transition-all active:scale-95 flex items-center justify-center gap-2"
+            >
+                <span>Saber otro dato</span>
+                <!-- Ícono QR SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                    <!-- Esquina superior izquierda -->
+                    <rect x="2" y="2" width="14" height="14" rx="2" stroke="#6b7280" stroke-width="2.5" fill="none"/>
+                    <rect x="6" y="6" width="6" height="6" rx="1" fill="#6b7280"/>
+                    <!-- Esquina superior derecha -->
+                    <rect x="24" y="2" width="14" height="14" rx="2" stroke="#6b7280" stroke-width="2.5" fill="none"/>
+                    <rect x="28" y="6" width="6" height="6" rx="1" fill="#6b7280"/>
+                    <!-- Esquina inferior izquierda -->
+                    <rect x="2" y="24" width="14" height="14" rx="2" stroke="#6b7280" stroke-width="2.5" fill="none"/>
+                    <rect x="6" y="28" width="6" height="6" rx="1" fill="#6b7280"/>
+                    <!-- Módulos del centro -->
+                    <rect x="24" y="24" width="4" height="4" rx="0.5" fill="#6b7280"/>
+                    <rect x="30" y="24" width="4" height="4" rx="0.5" fill="#6b7280"/>
+                    <rect x="24" y="30" width="4" height="4" rx="0.5" fill="#6b7280"/>
+                    <rect x="30" y="30" width="4" height="4" rx="0.5" fill="#6b7280"/>
+                    <rect x="18" y="2" width="4" height="4" rx="0.5" fill="#6b7280"/>
+                    <rect x="18" y="8" width="4" height="4" rx="0.5" fill="#6b7280"/>
+                    <rect x="18" y="14" width="4" height="4" rx="0.5" fill="#6b7280"/>
+                    <rect x="2" y="18" width="4" height="4" rx="0.5" fill="#6b7280"/>
+                    <rect x="8" y="18" width="4" height="4" rx="0.5" fill="#6b7280"/>
+                    <rect x="14" y="18" width="4" height="4" rx="0.5" fill="#6b7280"/>
+                    <rect x="20" y="20" width="4" height="4" rx="0.5" fill="#6b7280"/>
+                    <rect x="36" y="18" width="4" height="4" rx="0.5" fill="#6b7280"/>
+                    <rect x="36" y="36" width="4" height="4" rx="0.5" fill="#6b7280"/>
+                </svg>
+            </button>
+        </div>
+
+        <footer class="text-gray-400 text-sm pt-2">
+            <!-- Trofeo SVG -->
+            ¡Disfrutá tu premio!
+        </footer>
+
+    </div>
+
+    <script>
+        function reproducirCuac() {
+            const audio = document.getElementById('audio-cuac');
+            audio.currentTime = 0; 
+            audio.play();
+        }
+
+        const datosQR = [
+            "El código QR fue inventado en 1994 por Denso Wave para rastrear piezas de autos Toyota.",
+            "QR significa 'Quick Response' (Respuesta Rápida).",
+            "Un código QR puede ser escaneado aunque esté dañado hasta en un 30%.",
+            "Los tres cuadrados grandes en las esquinas ayudan al lector a saber la orientación del código.",
+            "Existen códigos QR dinámicos que permiten cambiar el destino sin imprimirlo de nuevo.",
+            "El código QR más grande del mundo se hizo en un campo de maíz en Canadá en 2012.",
+            "Los códigos QR pueden almacenar texto, enlaces, contactos, ubicaciones y contraseñas WiFi.",
+            "Japón fue uno de los primeros países en popularizar el uso masivo de códigos QR.",
+            "Muchos restaurantes reemplazaron sus menús físicos por códigos QR durante la pandemia.",
+            "Algunos códigos QR incluyen logos personalizados sin dejar de funcionar correctamente.",
+            "Un código QR puede contener más de 7.000 números o más de 4.000 caracteres de texto.",
+            "Los códigos QR funcionan más rápido si tienen buen contraste entre fondo y figura.",
+            "Existen códigos QR de colores, aunque el negro sobre blanco sigue siendo el más efectivo.",
+            "El primer uso comercial masivo del QR fue en la industria automotriz.",
+            "Los teléfonos modernos detectan códigos QR directamente desde la cámara.",
+            "Hay códigos QR que abren automáticamente chats de WhatsApp.",
+            "Los códigos QR se utilizan para compartir redes WiFi instantáneamente.",
+            "No todos los códigos QR son seguros; algunos pueden dirigir a sitios falsos.",
+            "Los códigos QR pueden imprimirse en ropa, carteles, vasos y hasta tatuajes.",
+            "Un QR puede seguir funcionando incluso si una parte está tapada o rayada.",
+            "Algunos museos usan códigos QR para mostrar información interactiva.",
+            "Existen códigos QR animados, aunque no todos los lectores pueden interpretarlos.",
+            "China utiliza códigos QR para pagos digitales de forma masiva.",
+            "Hay personas que crean arte completo utilizando pequeños códigos QR.",
+            "El diseño cuadrado del QR ayuda a que pueda escanearse desde cualquier ángulo.",
+            "Los códigos QR pueden medir apenas unos milímetros y seguir funcionando.",
+            "Muchas tarjetas de presentación modernas incluyen códigos QR.",
+            "Los códigos QR reducen errores al escribir enlaces largos manualmente.",
+            "Algunas marcas esconden promociones secretas dentro de códigos QR.",
+            "El código QR es uno de los símbolos tecnológicos más reconocibles del mundo.",
+            "En algunos países, los códigos QR se usan en lápidas para mostrar biografías de los difuntos.",
+            "Un código QR puede redirigir a una descarga automática de un archivo PDF.",
+            "El estándar QR es abierto, lo que permite que cualquiera cree uno gratis.",
+            "Los códigos QR pueden ser encriptados para restringir su lectura.",
+            "Existen versiones de 'Micro QR' para superficies extremadamente pequeñas.",
+            "Algunos videojuegos usan códigos QR para desbloquear contenido especial.",
+            "Fueron diseñados para leerse 10 veces más rápido que un código de barras tradicional.",
+            "En 2021, se usaron drones para formar un código QR gigante en el cielo de Shanghái.",
+            "Se pueden usar códigos QR para autenticación de dos factores (2FA) en sitios web.",
+            "Los códigos QR pueden ser generados para realizar transferencias bancarias directas.",
+            "Existen códigos QR 'fantasma' que solo son visibles bajo luz ultravioleta.",
+            "El uso de códigos QR creció un 400% a nivel mundial en los últimos años.",
+            "Se estima que para finales de 2026, miles de millones de personas usarán QRs diariamente.",
+            "El patrón de un QR no es aleatorio, sigue una estructura matemática muy precisa.",
+            "Los códigos QR ayudaron a digitalizar la economía en zonas rurales de Asia."
+        ];
+
+        function cambiarDato() {
+            const index = Math.floor(Math.random() * datosQR.length);
+            document.getElementById('dato-qr').innerText = datosQR[index];
+        }
+
+        window.onload = cambiarDato;
+    </script>
+</body>
+</html>
